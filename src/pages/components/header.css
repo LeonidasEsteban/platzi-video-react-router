@@ -1,0 +1,48 @@
+.Header {
+  background: white;
+  display: flex;
+  align-items: center;
+}
+.Header nav {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+}
+.Header img {
+  align-self: flex-start;
+}
+
+.Header nav ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, 100px));
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.Header li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.Header a {
+  color: #181c30;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: .2s;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.Header a.is-selected {
+  box-shadow: inset 0 3px 0 0 #161c30;
+}
+
+.Header a:hover {
+  box-shadow: inset 0 3px 0 0 #161c30;
+}
