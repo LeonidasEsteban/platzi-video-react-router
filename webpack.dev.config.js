@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    "home": path.resolve(__dirname, 'src/entries/home.js'),
-    "redux": path.resolve(__dirname, 'src/entries/redux.js'),
+    "app": path.resolve(__dirname, 'src/entries/app.js'),
+    // "redux": path.resolve(__dirname, 'src/entries/redux.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
