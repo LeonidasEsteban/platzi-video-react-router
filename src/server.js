@@ -1,29 +1,39 @@
-const express = require('express');
-const App = require('../dist/ssr/app');
-const ReactRouter = require('react-router');
+import express from 'express';
+import React from 'react';
+import App from '../dist/ssr/app';
+import { StaticRouter } from 'react-router';
+import reactDOMServer from 'react-dom/server';
 
 const app = express();
 
-<ReactRouter.StaticRouter>
-  <App />
-</ReactRouter.StaticRouter>
 
+app.use(express.static('dist'));
+app.use('/images', express.static('images'));
 
 app.get('*', (req, res) => {
-  console.log(req.url)
+  const html = reactDOMServer.renderToString(
+    <StaticRouter
+      location={req.url}
+      context={{
+        name: 'leonidas'
+      }}
+    >
+      <App />
+    </StaticRouter>
+  )
   res.write(`
     <!DOCTYPE html>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
         <title>Platzi Video</title>
-        <!-- <link rel="stylesheet" href="dist/css/home.7646f097e8e64cbf8f09.css"> -->
+        <link rel="stylesheet" href="/css/app.css">
       </head>
       <body>
-        <div id="home-container">Hola mundo! ${req.url}</div>
+        <div id="home-container">${html}</div>
         <div id="modal-container"></div>
-        <script src="http://localhost:9000/js/app.js"></script>
-        <!-- <script src="dist/js/home.7646f097e8e64cbf8f09.js"></script> -->
+        <!-- <script src="http://localhost:9000/js/app.js"></script> -->
+        <script src="/js/app.js"></script>
       </body>
     </html>
   `)
